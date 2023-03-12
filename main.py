@@ -14,5 +14,10 @@ targets = torch.LongTensor([[2, 3, 3, 3, 3, 3, 2, 2, 1, 0],
                             [2, 3, 3, 3, 3, 3, 2, 2, 0, 1]]).to(device)  # 1 means <eos_token>
 target_lengths = torch.IntTensor([10, 9, 8])
 
+inputs, input_lengths, targets, target_lengths = inputs.to(device), \
+                                                 input_lengths.to(device), \
+                                                 targets.to(device),\
+                                                 target_lengths.to(device)
+
 model = SpeechTransformer(num_classes=NUM_CLASSES, d_model=512, num_heads=8, input_dim=DIM)
 predictions, logits = model(inputs, input_lengths, targets, target_lengths)
